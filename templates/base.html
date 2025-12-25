@@ -1,0 +1,12 @@
+       <!DOCTYPE html>
+<html>
+<head><title>Music Band</title></head>
+<body>
+    <nav>
+        <a href="/">Головна</a> | <a href="/about">Про проект</a> | <a href="/history">Історія гурту</a>
+        {% if session.logged_in %} | <a href="/logout">Вихід (Admin)</a> {% else %} | <a href="/login">Вхід</a> {% endif %}
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
