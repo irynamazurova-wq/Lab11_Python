@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Історія гурту та Альбоми</h1>
+    <h3>Наші альбоми:</h3>
+    <ul>
+        {% for album in albums %}
+            <li>
+                {{ album.name }} ({{ album.year }})
+                {% if session.logged_in %}
+                    <a href="{{ url_for('delete_album', album_id=album.id) }}" style="color:red;">[Видалити]</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% if session.logged_in %}
+        <hr>
+        <h4>Додати новий альбом:</h4>
+        <form action="/add" method="post">
+            <input name="name" placeholder="Назва альбому" required>
+            <input name="year" placeholder="Рік" required>
+            <button type="submit">Зберегти</button>
+        </form>
+    {% endif %}
+{% endblock %}
